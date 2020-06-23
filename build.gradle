@@ -3,18 +3,18 @@ tasks.register("test", TestTask) {
 
     def forward = new Forward()
     forward.backingFile = project.file("${project.rootDir}/src/forward.txt")
-    messages.add forward
+    messages.add(forward)
 
     def backward = new Backward()
     backward.backingFile = project.file("${project.rootDir}/src/backward.txt")
-    messages.add backward
+    messages.add(backward)
 
     def delegate = new Backward()
     delegate.backingFile = project.file("${project.rootDir}/src/delegate.txt")
     def chained = new Chained()
     chained.delegate = delegate
     chained.backingFile = project.file("${project.rootDir}/src/chained.txt")
-    messages.add chained
+    messages.add(chained)
 }
 
 
