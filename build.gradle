@@ -20,7 +20,7 @@ tasks.register("test", TestTask) {
 
 class TestTask extends DefaultTask {
     @Nested
-    List<InputType> messages = new ArrayList<InputType>()
+    List<MessageProvider> messages = new ArrayList<MessageProvider>()
 
     @OutputFile
     File out
@@ -33,11 +33,11 @@ class TestTask extends DefaultTask {
      }
 }
 
- interface InputType {
+ interface MessageProvider {
      String getValue()
  }
 
-class Forward implements InputType {
+class Forward implements MessageProvider {
     @InputFile
     File backingFile
 
@@ -48,7 +48,7 @@ class Forward implements InputType {
 }
 
 
-class Backward implements InputType {
+class Backward implements MessageProvider {
     @InputFile
     File backingFile
 
@@ -58,9 +58,9 @@ class Backward implements InputType {
     }
 }
 
-class Chained implements InputType {
+class Chained implements MessageProvider {
     @Nested
-    InputType delegate
+    MessageProvider delegate
 
     @InputFile
     File backingFile
